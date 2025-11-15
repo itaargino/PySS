@@ -5,3 +5,4 @@ Ele recebe uma URL como entrada, realiza verificações básicas de segurança e
 
 ### Funcionalidades (no momento)
 - Validação de URL
+- Interpretação de cabeçalhos
