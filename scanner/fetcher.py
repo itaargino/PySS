@@ -12,8 +12,11 @@ def fetch_url(url: str) -> dict | None:
         response = requests.get(url, timeout=10, allow_redirects=True, headers=headers)
         response.raise_for_status()  # Lança HTTPError para status de erro (4xx ou 5xx)
         return {
+            "url": response.url,  # URL final, depois dos redirecionamentos
             "status_code": response.status_code,
             "headers": dict(response.headers),
+            # Lista separada, pois o requests junta vários Set-Cookie num só valor
+            "cookies": response.raw.headers.getlist("Set-Cookie"),
             "html": response.text
         }
     # Captura exceções da biblioteca requests (ConnectionError, Timeout, etc.)
